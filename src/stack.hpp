@@ -18,7 +18,7 @@ public:
 			return buf[--topv];
 		}
 		else {
-			return '\0';
+			return '@';
 		}
 
 	}
@@ -27,7 +27,7 @@ public:
 			return buf[topv];
 		}
 		else {
-			return '\0';
+			return '@';
 		}
 	}
 	bool isEmpty() {
