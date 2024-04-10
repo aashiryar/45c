@@ -12,16 +12,13 @@ public:
 		if (topv != STK_MAX ) {
 			buf[topv++] = c;
 		}
-		else{
-			return '\0'
-		}
 	}
 	char pop() {
 		if(topv != 0){
 			return buf[--topv];
 		}
 		else {
-			return '/0'
+			return '\0';
 		}
 
 	}
@@ -30,7 +27,7 @@ public:
 			return buf[topv];
 		}
 		else {
-			return '/0'
+			return '\0';
 		}
 	}
 	bool isEmpty() {
