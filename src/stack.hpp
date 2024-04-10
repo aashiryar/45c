@@ -25,7 +25,7 @@ public:
 	}
 	char top() {
 		if (topv != 0) {
-			return buf[topv];
+			return buf[topv-1];
 		}
 		else {
 			return '@';
