@@ -10,7 +10,8 @@ public:
 	}
 	void push(char c) {
 		if (topv != STK_MAX ) {
-			buf[topv++] = c;
+			buf[topv] = c;
+			topv++;
 		}
 	}
 	char pop() {
