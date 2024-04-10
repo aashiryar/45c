@@ -9,18 +9,28 @@ public:
 		topv = 0;
 	}
 	void push(char c) {
-		if (topv != STK_MAX -1) {
+		if (topv != STK_MAX ) {
 			buf[topv++] = c;
+		}
+		else{
+			return '\0'
 		}
 	}
 	char pop() {
 		if(topv != 0){
 			return buf[--topv];
 		}
+		else {
+			return '/0'
+		}
+
 	}
 	char top() {
-		if (!isEmpty()) {
+		if (topv != 0) {
 			return buf[topv];
+		}
+		else {
+			return '/0'
 		}
 	}
 	bool isEmpty() {
@@ -30,7 +40,7 @@ public:
 		return false;
 	}
 	bool isFull() {
-		if (topv == STK_MAX -1){
+		if (topv == STK_MAX){
 			return true;
 		}
 		return false;
