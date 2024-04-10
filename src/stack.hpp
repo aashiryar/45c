@@ -9,10 +9,12 @@ public:
 		topv = 0;
 	}
 	void push(char c) {
-		buf[topv++] = c;
+		if (topv != STK_MAX -1) {
+			buf[topv++] = c;
+		}
 	}
 	char pop() {
-		if(!isEmpty()){
+		if(topv != 0){
 			return buf[--topv];
 		}
 	}
@@ -44,4 +46,5 @@ void pop_all(Stack & stk) {
 	while(!stk.isEmpty()) {
 		cout << stk.pop();
 	}
+	cout <<"\n";
 }

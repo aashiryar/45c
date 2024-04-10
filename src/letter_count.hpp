@@ -18,8 +18,8 @@ char index_to_char(int i) {
 }
 void count(string s, int counts[]){
 	for (char ch : s) {
-		int index = char_to_index(ch);
-		if (index <=  25) {
+		if (isalpha(ch)){
+			int index = char_to_index(ch);
 			counts[index]++;
 		}
 	}
