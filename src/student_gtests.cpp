@@ -51,4 +51,10 @@ TEST(WordCount, OutputWordCounts) {
 	stringstream output;
 	output_word_counts(word_counts, output);
 	EXPECT_STREQ(output.str().c_str(), "bar 5\nfoo 1\nxy 3\n");
+	map<string, int> words;
+	words["Hi"] = 1;
+	stringstream output2;
+	output_word_counts(words, output2);
+	EXPECT_STREQ(output2.str().c_str(), "Hi 1\n");
+
 }
