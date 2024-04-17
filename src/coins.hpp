@@ -152,7 +152,7 @@ inline void coins_menu(std::istream& in, std::ostream& out) {
 			print_balance(coins, out);
 		}
         else if (choice == 4) {
-			out << "$";
+			out << " ";
 		}
         else {
 			out << "ERROR: Invalid Command" << std::endl;
