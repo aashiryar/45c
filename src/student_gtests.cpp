@@ -5,16 +5,32 @@
 using namespace std;
 
 TEST(WordCount, ToLowercase) {
-	string test = "hELLO wOrld";
-	to_lowercase(test);
-	EXPECT_STREQ("hello world", test.c_str());
+	string test = "Hello";
+	string test1 = "hEllo";
+	string test2 = "hello";
+	string test3 = "hELLO world";
+	to_lowercase (test); 
+	to_lowercase (test1); 
+	to_lowercase (test2); 
+	to_lowercase (test3) ;
+	EXPECT_STREQ("hello", test.c_str());
+	EXPECT_STREQ("hello", test1.c_str());
+	EXPECT_STREQ("hello", test2.c_str());
+	EXPECT_STREQ("hello world", test3.c_str());
 }
 TEST(WordCount, LoadStopWords) {
-	stringstream test("hello world");
+	stringstream test("Hello bye");
 	const auto stop_words = load_stopwords(test);
-	EXPECT_TRUE(stop_words.contains("hello"));
-	EXPECT_TRUE(stop_words.contains("world"));
-	EXPECT_FALSE(stop_words.contains("foo"));
+	EXPECT_TRUE (stop_words. contains ("hello"));
+	EXPECT_FALSE (stop_words.contains ("byebye")); 
+	stringstream test2("");
+	const auto stop_words2 = load_stopwords (test2) ;
+	EXPECT_FALSE (stop_words2. contains ("hi"));
+	stringstream test3("hello world");
+	const auto stop_words3 = load_stopwords (test3);
+	EXPECT_TRUE (stop_words3.contains("hello"));
+	EXPECT_TRUE (stop_words3.contains("world")) ;
+	EXPECT_FALSE (stop_words3.contains("foo"));
 }
 TEST(WordCount, CountWords) {
 	stringstream test("aa aa bc foo bar");
@@ -24,7 +40,7 @@ TEST(WordCount, CountWords) {
 	EXPECT_EQ(counts.at("foo"), 1);
 	EXPECT_EQ(counts.at("bar"), 1);
 	EXPECT_FALSE(counts.contains("baz"));
-
+	
 }
 TEST(WordCount, OutputWordCounts) {
 	map<string, int> word_counts;
