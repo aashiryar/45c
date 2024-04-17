@@ -20,6 +20,9 @@ TEST(WordCount, LoadStopWords) {
 	const auto stop_words = load_stopwords(test);
 	EXPECT_TRUE(stop_words.contains("hello"));
 	EXPECT_FALSE(stop_words.contains("byebye"));
+	stringstream test2("");
+	const auto stop_words2 = load_stopwords(test2);
+	EXPECT_FALSE(stop_words2.contains("hi"));
 }
 TEST(WordCount, CountWords) {
 	stringstream test("aa bb aa cc");
@@ -28,6 +31,9 @@ TEST(WordCount, CountWords) {
 	EXPECT_EQ(counts.at("bb"), 1);
 	EXPECT_EQ(counts.at("cc"), 1);
 	EXPECT_FALSE(counts.contains("dd"));
+	stringstream test2("$");
+	const auto counts2 = count_words(test2, {});
+	EXPECT_TRUE(counts2.contains("$"));
 }
 TEST(WordCount, OutputWordCounts) {
 	map<string, int> word_counts;
@@ -37,4 +43,8 @@ TEST(WordCount, OutputWordCounts) {
 	stringstream output;
 	output_word_counts(word_counts, output);
 	EXPECT_STREQ(output.str().c_str(), "aa 1\nbb 2\ncc 3\n");
+	map<string, int> word_counts2;
+	stringstream output2;
+	output_word_counts(word_counts2,output2);
+	EXPECT_STREQ(output2.str().c_str(), "");
 }
