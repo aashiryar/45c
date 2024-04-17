@@ -41,6 +41,12 @@ TEST(WordCount, CountWords) {
 	EXPECT_EQ(counts.at("bar"), 1);
 	EXPECT_EQ(counts.size(), 4);
 	EXPECT_FALSE(counts.contains("baz"));
+	stringstream test2("aa bb");
+	std::set<std::string> stop = {"bb"};
+	const auto counts2 = count_words(test2, stop);
+	EXPECT_EQ(counts2.at("aa"), 1);
+	EXPECT_FALSE(counts2.contains("bb"));
+
 	
 }
 TEST(WordCount, OutputWordCounts) {
