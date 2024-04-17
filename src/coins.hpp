@@ -25,14 +25,16 @@ public:
 		}
 	}
 	Coins extract_exact_change(const Coins& coins) {
-		Coins newobj = Coins(0,0,0,0);
 		if (has_exact_change_for_coins(coins)) {
-			newobj.quarters = quarters - coins.quarters;
-			newobj.dimes = dimes - coins.dimes;
-			newobj.nickels = nickels - coins.nickels;
-			newobj.pennies = pennies - coins.pennies;
+			quarters -= coins.quarters;
+			dimes -= coins.dimes;
+			nickels -= coins.nickels;
+			pennies -= coins.pennies;
+			return Coins(quarters, dimes, nickels, pennies);
 		}
-		return newobj;
+		else {
+			return Coins(0,0,0,0);
+		}
 	}
 	int total_value_in_cents() const {
 		int total = 0;
