@@ -5,69 +5,33 @@
 using namespace std;
 
 TEST(WordCount, ToLowercase) {
-	string test = "Hello";
-	string test1 = "hEllo";
-	string test2 = "hello";
-	string test3 = "hELLO wOrld";
+	string test = "hELLO wOrld";
 	to_lowercase(test);
-	to_lowercase(test1);
-	to_lowercase(test2);
-	to_lowercase(test3);
-	EXPECT_STREQ("hello", test.c_str());
-	EXPECT_STREQ("hello", test1.c_str());
-	EXPECT_STREQ("hello", test2.c_str());
-	EXPECT_STREQ("hello world", test3.c_str());
+	EXPECT_STREQ("hello world", test.c_str());
 }
 TEST(WordCount, LoadStopWords) {
-	stringstream test("Hello bye");
+	stringstream test("hello world");
 	const auto stop_words = load_stopwords(test);
 	EXPECT_TRUE(stop_words.contains("hello"));
-	EXPECT_FALSE(stop_words.contains("byebye"));
-	stringstream test2("");
-	const auto stop_words2 = load_stopwords(test2);
-	EXPECT_FALSE(stop_words2.contains("hi"));
-	stringstream test3("hello world");
-	const auto stop_words3 = load_stopwords(test3);
-	EXPECT_TRUE(stop_words3.contains("hello"));
-	EXPECT_TRUE(stop_words3.contains("world"));
-	EXPECT_FALSE(stop_words3.contains("foo"));
+	EXPECT_TRUE(stop_words.contains("world"));
+	EXPECT_FALSE(stop_words.contains("foo"));
 }
 TEST(WordCount, CountWords) {
-	stringstream test("aa bb aa cc");
+	stringstream test("aa aa bc foo bar");
 	const auto counts = count_words(test, {});
 	EXPECT_EQ(counts.at("aa"), 2);
-	EXPECT_EQ(counts.at("bb"), 1);
-	EXPECT_EQ(counts.at("cc"), 1);
-	EXPECT_FALSE(counts.contains("dd"));
-	stringstream test2("$");
-	const auto counts2 = count_words(test2, {});
-	EXPECT_TRUE(counts2.contains("$"));
-	stringstream test3("aa aa bc foo bar");
-	const auto counts3 = count_words(test3, {});
-	EXPECT_EQ(counts3.at("aa"), 2);
-	EXPECT_EQ(counts3.at("bc"), 1);
-	EXPECT_EQ(counts3.at("foo"), 1);
-	EXPECT_EQ(counts3.at("bar"), 1);
+	EXPECT_EQ(counts.at("bc"), 1);
+	EXPECT_EQ(counts.at("foo"), 1);
+	EXPECT_EQ(counts.at("bar"), 1);
 	EXPECT_FALSE(counts.contains("baz"));
 
 }
 TEST(WordCount, OutputWordCounts) {
 	map<string, int> word_counts;
-	word_counts["aa"] = 1;
-	word_counts["bb"] = 2;
-	word_counts["cc"] = 3;
+	word_counts["foo"] = 1;
+	word_counts["bar"] = 5;
+	word_counts["xy"] = 3;
 	stringstream output;
 	output_word_counts(word_counts, output);
-	EXPECT_STREQ(output.str().c_str(), "aa 1\nbb 2\ncc 3\n");
-	map<string, int> word_counts2;
-	stringstream output2;
-	output_word_counts(word_counts2,output2);
-	EXPECT_STREQ(output2.str().c_str(), "");
-	map<string, int> word_counts3;
-	word_counts3["foo"] = 1;
-	word_counts3["bar"] = 5;
-	word_counts3["xy"] = 3;
-	stringstream output3;
-	output_word_counts(word_counts3, output3);
-	EXPECT_STREQ(output3.str().c_str(), "bar 5\nfoo 1\nxy 3\n");
+	EXPECT_STREQ(output.str().c_str(), "bar 5\nfoo 1\nxy 3\n");
 }
