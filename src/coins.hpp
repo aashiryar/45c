@@ -31,7 +31,8 @@ public:
 			dimes -= coins.dimes;
 			nickels -= coins.nickels;
 			pennies -= coins.pennies;
-			return Coins(quarters, dimes, nickels, pennies);
+			//return Coins(quarters, dimes, nickels, pennies);
+			return coins;
 		}
 		else {
 			return Coins(0,0,0,0);
