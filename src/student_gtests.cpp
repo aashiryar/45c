@@ -33,12 +33,13 @@ TEST(WordCount, LoadStopWords) {
 	EXPECT_FALSE (stop_words3.contains("foo"));
 }
 TEST(WordCount, CountWords) {
-	stringstream test("aa aa bc foo bar");
+	stringstream test("Aa aa bc foo bar");
 	const auto counts = count_words(test, {});
 	EXPECT_EQ(counts.at("aa"), 2);
 	EXPECT_EQ(counts.at("bc"), 1);
 	EXPECT_EQ(counts.at("foo"), 1);
 	EXPECT_EQ(counts.at("bar"), 1);
+	EXPECT_EQ(counts.size(), 4);
 	EXPECT_FALSE(counts.contains("baz"));
 	
 }
