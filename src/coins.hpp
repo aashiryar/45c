@@ -15,6 +15,7 @@ public:
 		dimes+=coins.dimes;
 		nickels+=coins.nickels;
 		pennies+=coins.pennies;
+		coins = Coins(0,0,0,0);
 	}
 	bool has_exact_change_for_coins(const Coins& coins){
 		if (quarters >= coins.quarters && dimes >= coins.dimes && nickels >= coins.nickels && pennies >= coins.pennies) {
@@ -64,15 +65,15 @@ inline Coins coins_required_for_cents(int amount_in_cents) {
 	int dimes = 0;
 	int nickels = 0;
 	int pennies = 0;
-	while (amount_in_cents>CENTS_PER_QUARTER) {
+	while (amount_in_cents>=CENTS_PER_QUARTER) {
 		amount_in_cents -= CENTS_PER_QUARTER;
 		quarters += 1;
 	}
-	while (amount_in_cents>CENTS_PER_DIME) {
+	while (amount_in_cents>=CENTS_PER_DIME) {
 		amount_in_cents -= CENTS_PER_DIME;
 		dimes += 1;
 	}
-	while (amount_in_cents>CENTS_PER_NICKEL) {
+	while (amount_in_cents>=CENTS_PER_NICKEL) {
 		amount_in_cents -= CENTS_PER_NICKEL;
 		nickels+= 1;
 	}
