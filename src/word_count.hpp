@@ -5,6 +5,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <iostream>
 
 inline void to_lowercase(std::string& str) {
 	std::string nstr = "";
@@ -14,13 +15,13 @@ inline void to_lowercase(std::string& str) {
 	str = nstr;
 }
 inline std::set<std::string> load_stopwords(std::istream& stopwords) {
-	std::set<std::string> stop_words;
+	std::set<std::string> words;
 	std::string word;
-	while (stopwords >> word) {
+	while (stopwords >>  word) {
 		to_lowercase(word);
-		stop_words.insert(word);
+		words.insert(word);
 	}
-	return stop_words;
+	return words;
 }
 inline std::map<std::string, int> count_words(std::istream& document, const std::set<std::string>& stopwords) {
 	std::map<std::string, int> words_counts;
@@ -44,4 +45,5 @@ inline void output_word_counts(const std::map<std::string, int>& word_counts, st
 		output << elem.first << " " << elem.second << "\n";
 	}
 }
+
 #endif
