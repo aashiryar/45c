@@ -113,7 +113,7 @@ const char* String::strstr(const char *haystack, const char *needle){
 
 String::String(const char *s){
     if (strlen(s) >= MAXLEN) {
-       std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+       cout << "ERROR: String Capacity Exceeded" << endl;
         buf[0] = '\0';
     }
     else {
@@ -123,7 +123,7 @@ String::String(const char *s){
 }
 String::String(const String &s) {
     if (s.size() >= MAXLEN) {
-        std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+        cout << "ERROR: String Capacity Exceeded" << endl;
         buf[0] = '\0';
     }
     else {
@@ -142,7 +142,7 @@ char& String::operator[](int index){
         return buf[index];
     } 
     else {
-        std::cerr << "ERROR: Index Out Of Bounds" << std::endl;
+        cout << "ERROR: Index Out Of Bounds" << endl;
         return buf[0];
     }
 }
@@ -207,7 +207,7 @@ bool String::operator>=(const String &s) const{
 String String::operator+(const String &s) const {
     char string[MAXLEN];
     if (size() + s.size() >= MAXLEN) {
-        std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+        cout << "ERROR: String Capacity Exceeded" << endl;
         string[0] = '\0';
     } 
     else {
@@ -219,7 +219,7 @@ String String::operator+(const String &s) const {
 //check
 String& String::operator+=(const String &s) {
     if (size() + s.size() >= MAXLEN) {
-        std::cerr << "ERROR: String Capacity Exceeded" << std::endl;
+        cout << "ERROR: String Capacity Exceeded" << endl;
 	} 
     else {
         strncat(buf, s.buf, MAXLEN-1);
