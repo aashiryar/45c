@@ -30,7 +30,18 @@ TEST(StringFunction, strncpy) {
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(true);
+	char dest[10] = "bye";
+	EXPECT_EQ(String::strcat(dest, "hello"), dest);
+	EXPECT_STREQ(dest, "byehello");
+	EXPECT_EQ(String::strcat(dest, ""), dest);
+	EXPECT_STREQ(dest, "byehello");
+
+	char dest2[10] = "";
+	EXPECT_EQ(String::strcat(dest2, "hello"), dest2);
+	EXPECT_STREQ(dest2, "hello");
+	char dest3[10] = "";
+	EXPECT_EQ(String::strcat(dest3, ""), dest3);
+	EXPECT_STREQ(dest3, "");
 }
 
 TEST(StringFunction, strncat) {
