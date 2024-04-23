@@ -25,10 +25,7 @@ char* String::strncpy(char *dest, const char *src, int n) {
         dest[i] = src[i];
         i++;
     }
-    while (i<n) {
-        dest[i] = '\0';
-        i++;
-    }
+    dest[i] = '\0';
     return dest;
 }
 char* String::strcat(char *dest, const char *src) {
@@ -152,19 +149,19 @@ char& String::operator[](int index){
 int String::size() const{
     return strlen(buf);
 }
-String String::reverse() {
+String String::reverse() const{
     char reversed_string[MAXLEN];
     reverse_cpy(reversed_string, buf);
     return String(reversed_string);
 }
-int String::indexOf(char c){
+int String::indexOf(char c) const{
     const char *pointer = strchr(buf, c);
     if (pointer != nullptr) {
         return pointer - buf;
     }
     return -1;
 }
-int String::indexOf(const String &s) {
+int String::indexOf(const String &s) const {
     const char *pointer = strstr(buf, s.buf);
     if (pointer != nullptr) {
         return pointer - buf;
