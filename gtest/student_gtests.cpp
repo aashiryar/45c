@@ -113,7 +113,26 @@ TEST(StringFunction, reverse_cpy) {
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(true);
+	const char str[] = "This is a sample string";
+	const char* pch = strchr(str,'s');
+	const char dest[] = "s is a sample string";
+	EXPECT_STREQ(pch, dest);
+	const char str1[] = "abc";
+	const char* pch1 = strchr(str1,'b');
+	const char dest1[] = "bc";
+	EXPECT_STREQ(pch1, dest1);
+	const char str2[] = "a";
+	const char* pch2 = strchr(str2,'a');
+	const char dest2[] = "a";
+	EXPECT_STREQ(pch2, dest2);
+	const char str3[] = "";
+	const char* pch3 = strchr(str3,'a');
+	//const char dest3[] = nullptr;
+	EXPECT_STREQ(pch3, NULL);
+	const char str4[] = "";
+	const char* pch4 = strchr(str4,'\0');
+	const char dest4[] = "";
+	EXPECT_STREQ(pch4, dest4);
 }
 
 TEST(StringFunction, strstr) {
