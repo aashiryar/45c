@@ -110,7 +110,6 @@ const char* String::strstr(const char *haystack, const char *needle){
     }
     return nullptr;
 }
-
 String::String(const char *s){
     if (strlen(s) >= MAXLEN) {
        cout << "ERROR: String Capacity Exceeded" << endl;
@@ -205,16 +204,16 @@ bool String::operator>=(const String &s) const{
     return false;
 }
 String String::operator+(const String &s) const {
-    char string[MAXLEN];
+    String R;
     if (size() + s.size() >= MAXLEN) {
         cout << "ERROR: String Capacity Exceeded" << endl;
-        string[0] = '\0';
+        R[0] = '\0';
     } 
     else {
-        strcpy(string, buf);
-        strcat(string, s.buf);
+        strcpy(R.buf, buf);
+        strncat(R.buf, s.buf, MAXLEN-1);
     }
-    return String(string);
+    return R;
 }
 //check
 String& String::operator+=(const String &s) {
