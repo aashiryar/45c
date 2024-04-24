@@ -133,8 +133,39 @@ TEST(StringFunction, strchr) {
 	const char* pch4 = strchr(str4,'\0');
 	const char dest4[] = "";
 	EXPECT_STREQ(pch4, dest4);
+	const char str5[] = "Hello There";
+	const char* pch5 = strchr(str5,'t');
+	EXPECT_STREQ(pch5, NULL);
+	const char str6[] = "Hello There";
+	const char* pch6 = strchr(str6,' ');
+	const char dest6[] = " There";
+	EXPECT_STREQ(pch6, dest6);
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(true);
+    const char str[] = "This is a sample string";
+	const char* pch = strstr(str,"string");
+	const char dest[] = "string";
+	EXPECT_STREQ(pch, dest);
+	const char str1[] = "abc";
+	const char* pch1 = strstr(str1,"bc");
+	const char dest1[] = "bc";
+	EXPECT_STREQ(pch1, dest1);
+	const char str2[] = "a";
+	const char* pch2 = strstr(str2,"a");
+	const char dest2[] = "a";
+	EXPECT_STREQ(pch2, dest2);
+	const char str3[] = "";
+	const char* pch3 = strstr(str3,"hello");
+	EXPECT_STREQ(pch3, NULL);
+	const char str4[] = "";
+	const char* pch4 = strstr(str4,"");
+	const char dest4[] = "";
+	EXPECT_STREQ(pch4, dest4);
+	const char str5[] = "Hello There";
+	const char* pch5 = strstr(str5,"t");
+	EXPECT_STREQ(pch5, NULL);
+	const char str6[] = "Hello There";
+	const char* pch6 = strstr(str6,"Hellb");
+	EXPECT_STREQ(pch6, NULL);
 }
