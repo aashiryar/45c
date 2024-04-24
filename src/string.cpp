@@ -224,7 +224,8 @@ String& String::operator+=(const String &s) {
         cout << "ERROR: String Capacity Exceeded" << endl;
 	} 
     else {
-        strncat(buf, s.buf, MAXLEN-1);
+		String copy(s);
+        strncat(buf, copy.buf, MAXLEN-1);
     }
     return *this;
 }
