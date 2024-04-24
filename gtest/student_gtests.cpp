@@ -97,6 +97,18 @@ TEST(StringFunction, strncmp) {
 	char left4[] = "abc";
 	char right4[] = "ab";
 	EXPECT_EQ(String::strncmp(left4, right4, 0), 0);
+	char left5[] = "hello";
+	char right5[] = "hello";
+	EXPECT_EQ(String::strncmp(left5, right5, 5), 0);
+	char left6[] = "hellobc";
+	char right6[] = "hellojd";
+	EXPECT_EQ(String::strncmp(left6, right6, 5), 0);
+	char left7[] = "hello";
+	char right7[] = "hello";
+	EXPECT_EQ(String::strncmp(left7, right7, 10), 0);
+	char left8[] = "byebyhithere";
+	char right8[] = "askfjhithere";
+	EXPECT_EQ(String::strncmp(left8, right8, 5), 1);
 }
 
 TEST(StringFunction, reverse_cpy) {
@@ -140,6 +152,10 @@ TEST(StringFunction, strchr) {
 	const char* pch6 = strchr(str6,' ');
 	const char dest6[] = " There";
 	EXPECT_STREQ(pch6, dest6);
+	const char str7[] = "This is a sample string";
+	const char* pch7 = strchr(str7,'T');
+	const char dest7[] = "This is a sample string";
+	EXPECT_STREQ(pch7, dest7);
 }
 
 TEST(StringFunction, strstr) {
@@ -172,4 +188,7 @@ TEST(StringFunction, strstr) {
 	const char* pch7 = strstr(str7,"");
 	const char dest7[] = "abc";
 	EXPECT_STREQ(pch7, dest7);
+	const char str8[] = "abc";
+	const char* pch8 = strstr(str8,"abcdef");
+	EXPECT_STREQ(pch8, NULL);
 }
