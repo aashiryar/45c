@@ -109,7 +109,13 @@ TEST(StringFunction, strncmp) {
 	char left8[] = "byebyhithere";
 	char right8[] = "askfjhithere";
 	EXPECT_EQ(String::strncmp(left8, right8, 5), 1);
+    EXPECT_EQ(String::strncmp("foo", "foo", 3), 0);
+    EXPECT_GT(String::strncmp("foo", "bar", 3), 0);
+    EXPECT_LT(String::strncmp("bar", "foo", 3), 0);
+    EXPECT_EQ(String::strncmp("foobar", "foo", 3), 0);
+    EXPECT_NE(String::strncmp("foobar", "foo", 6), 0);
 }
+
 
 TEST(StringFunction, reverse_cpy) {
 	char result[10];
@@ -195,4 +201,10 @@ TEST(StringFunction, strstr) {
 	const char str8[] = "abc";
 	const char* pch8 = strstr(str8,"abcdef");
 	EXPECT_STREQ(pch8, NULL);
+	const char* strstr = "Hello, world!";
+    EXPECT_EQ(String::strstr(strstr, "world"), strstr+ 7);
+    EXPECT_EQ(String::strstr(strstr, ""), strstr);
+    EXPECT_EQ(String::strstr(strstr, "foo"), nullptr);
+    EXPECT_EQ(String::strstr(strstr, "Hello"), strstr);
+    EXPECT_EQ(String::strstr(strstr, "world!"), strstr + 7);
 }
