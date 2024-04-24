@@ -156,6 +156,10 @@ TEST(StringFunction, strchr) {
 	const char* pch7 = strchr(str7,'T');
 	const char dest7[] = "This is a sample string";
 	EXPECT_STREQ(pch7, dest7);
+	const char* strstr = "Hello, world!";
+    EXPECT_EQ(String::strchr(strstr, 'w'), strstr + 7);
+    EXPECT_EQ(String::strchr(strstr, 'H'), strstr);
+    EXPECT_EQ(String::strchr(strstr, 'z'), nullptr);
 }
 
 TEST(StringFunction, strstr) {
