@@ -82,11 +82,34 @@ TEST(StringFunction, strcmp) {
 }
 
 TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(true);
+	char left[] = "";
+	char right[] = "";
+	EXPECT_EQ(String::strncmp(left, right, 3), 0);
+	char left1[] = "hello";
+	char right1[] = "hellb";
+	EXPECT_EQ(String::strncmp(left1, right1, 4), 0);
+	char left2[] = "hellb";
+	char right2[] = "hello";
+	EXPECT_EQ(String::strncmp(left2, right2, 5), -13);
+	char left3[] = "hello";
+	char right3[] = "bye";
+	EXPECT_EQ(String::strncmp(left3, right3, 8), 6);
+	char left4[] = "abc";
+	char right4[] = "ab";
+	EXPECT_EQ(String::strncmp(left4, right4, 0), 0);
 }
 
 TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(true);
+	char result[10];
+	String::reverse_cpy(result, "hello");
+	EXPECT_STREQ(result, "olleh");
+	String::reverse_cpy(result, "");
+	EXPECT_STREQ(result, "");
+	String::reverse_cpy(result, "a");
+	EXPECT_STREQ(result, "a");
+	char result1[10] = "hello";
+	String::reverse_cpy(result1, "bye");
+	EXPECT_STREQ(result1, "eyb");
 }
 
 TEST(StringFunction, strchr) {
