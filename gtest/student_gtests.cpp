@@ -168,4 +168,8 @@ TEST(StringFunction, strstr) {
 	const char str6[] = "Hello There";
 	const char* pch6 = strstr(str6,"Hellb");
 	EXPECT_STREQ(pch6, NULL);
+	const char str7[] = "abc";
+	const char* pch7 = strstr(str7,"");
+	const char dest7[] = "abc";
+	EXPECT_STREQ(pch7, dest7);
 }
