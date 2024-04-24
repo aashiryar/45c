@@ -43,12 +43,15 @@ char* String::strcat(char *dest, const char *src) {
     return dest;
 }
 char* String::strncat(char *dest, const char *src, int n){
+	//if (dest == src) {
+	//	return;
+//	}
     int i = 0;
     while (dest[i] != '\0') {
         i++;
     }
     int j = 0;
-    while (j<n && src[j] != '\0' ) {
+    while (j<n && src[j] != '\0') {
         dest[i] = src[j];
         i++;
         j++;    

@@ -45,11 +45,40 @@ TEST(StringFunction, strcat) {
 }
 
 TEST(StringFunction, strncat) {
-    EXPECT_TRUE(true);
+    char dest[10] = "bye";
+	EXPECT_EQ(String::strncat(dest, "hello", 2), dest);
+	EXPECT_STREQ(dest, "byehe");
+	EXPECT_EQ(String::strncat(dest, "hello",0), dest);
+	EXPECT_STREQ(dest, "byehe");
+	char dest2[10] = "";
+	EXPECT_EQ(String::strncat(dest2, "hello", 5), dest2);
+	EXPECT_STREQ(dest2, "hello");
+	//EXPECT_EQ(String::strncat(dest2, "hello", 8), dest2);
+	//EXPECT_STREQ(dest2, "hellohello");
+	char dest3[10] = "";
+	EXPECT_EQ(String::strncat(dest3, "",2), dest3);
+	EXPECT_STREQ(dest3, "");
 }
 
 TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(true);
+    char left[] = "";
+	char right[] = "";
+	EXPECT_EQ(String::strcmp(left, right), 0);
+	char left1[] = "hello";
+	char right1[] = "hello";
+	EXPECT_EQ(String::strcmp(left1, right1), 0);
+	char left2[] = "hellb";
+	char right2[] = "hello";
+	EXPECT_EQ(String::strcmp(left2, right2), -13);
+	char left3[] = "hello";
+	char right3[] = "bye";
+	EXPECT_EQ(String::strcmp(left3, right3), 6);
+	char left4[] = "abc";
+	char right4[] = "ab";
+	EXPECT_EQ(String::strcmp(left4, right4), 99);
+	char left5[] = "abd";
+	char right5[] = "abc";
+	EXPECT_EQ(String::strcmp(left5, right5), 1);
 }
 
 TEST(StringFunction, strncmp) {
