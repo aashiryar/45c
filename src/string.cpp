@@ -119,14 +119,14 @@ String String::operator+(String s) const {
     return result;
 }
 
-const String& String::operator+=(String s) const {
-   size_t len1 = size();
+String& String::operator+=(String s){
+    size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
     strcpy(newBuf, buf);
     strcat(newBuf, s.buf);
     delete[] buf;
-    *buf = *newBuf;
+    buf = newBuf;
     return *this;
 }
 void String::print(std::ostream &out) const {
