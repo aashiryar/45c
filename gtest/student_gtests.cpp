@@ -135,6 +135,7 @@ TEST(StringFunction, reverse_cpy) {
 	char result1[10] = "hello";
 	String::reverse_cpy(result1, "bye");
 	EXPECT_STREQ(result1, "eyb");
+}
 
 TEST(StringFunction, strchr) {
     const char str[] = "This is a sample string";
