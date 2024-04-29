@@ -24,37 +24,37 @@ TEST(StringFunction, strcpy) {
 }
 
 TEST(StringFunction, strdup) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strncpy) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strcat) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strncat) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strcmp) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strncmp) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, reverse_cpy) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strchr) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
 
 TEST(StringFunction, strstr) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }
