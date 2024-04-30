@@ -28,7 +28,7 @@ TEST(StringFunction, strdup) {
     char* copied1 = String::strdup(src1);
     EXPECT_STREQ(copied1, src1);
     delete[] copied1;
-    const char* src2 = nullptr;
+    char* src2 = nullptr;
     char* copied2 = String::strdup(src2);
     EXPECT_EQ(copied2, nullptr);
     const char* src3 = "";
