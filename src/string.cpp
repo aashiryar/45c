@@ -119,7 +119,7 @@ String String::operator+(String s) const {
     return result;
 }
 
-String& String::operator+=(String& s){
+String& String::operator+=(String s){
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
