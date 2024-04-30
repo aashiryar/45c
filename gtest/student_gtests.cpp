@@ -24,7 +24,25 @@ TEST(StringFunction, strcpy) {
 }
 
 TEST(StringFunction, strdup) {
-    EXPECT_TRUE(true);
+    const char* src1 = "Hello, world!";
+    char* copied1 = String::strdup(src1);
+    EXPECT_STREQ(copied1, src1);
+    delete[] copied1;
+    const char* src2 = nullptr;
+    char* copied2 = String::strdup(src2);
+    EXPECT_EQ(copied2, nullptr);
+    const char* src3 = "";
+    char* copied3 = String::strdup(src3);
+    EXPECT_STREQ(copied3, src3);
+    delete[] copied3;
+    const char* src4 = "!@#$%^&*()_+";
+    char* copied4 = String::strdup(src4);
+    EXPECT_STREQ(copied4, src4);
+    delete[] copied4;
+    const char* src5 = "Embedded\0Null\0Characters";
+    char* copied5 = String::strdup(src5);
+    EXPECT_STREQ(copied5, "Embedded");
+    delete[] copied5;
 }
 
 TEST(StringFunction, strncpy) {

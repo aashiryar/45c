@@ -72,43 +72,43 @@ int String::indexOf(String s) const {
     }
     return -1;
 }
-bool String::operator==(String s) const{
+bool String::operator==(String& s) const{
     if (strcmp(buf, s.buf) == 0) {
         return true;
     }
     return false;
 }
-bool String::operator!=(String s) const{
+bool String::operator!=(String& s) const{
     if (strcmp(buf, s.buf) != 0) {
         return true;
     }
     return false;
 }
-bool String::operator>(String s) const{
+bool String::operator>(String& s) const{
     if (strcmp(buf, s.buf) > 0) {
         return true;
     }
     return false;
 }
-bool String::operator<(String s) const{
+bool String::operator<(String& s) const{
     if (strcmp(buf, s.buf) < 0) {
         return true;
     }
     return false;
 }
-bool String::operator<=(String s) const {
+bool String::operator<=(String& s) const {
     if (strcmp(buf, s.buf) <= 0) {
         return true;
     }
     return false;
 }
-bool String::operator>=(String s) const{
+bool String::operator>=(String& s) const{
     if (strcmp(buf, s.buf) >= 0) {
         return true;
     }
     return false;
 }
-String String::operator+(String s) const {
+String String::operator+(Strin& s) const {
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
@@ -119,7 +119,7 @@ String String::operator+(String s) const {
     return result;
 }
 
-String& String::operator+=(String s){
+String& String::operator+=(String& s){
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
