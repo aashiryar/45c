@@ -48,7 +48,7 @@ public:
     bool operator>=(String& s) const;
 
     // concatenate this and s to form a return string
-    String operator+(String& s) const;
+    String operator+(String s) const;
 
     // concatenate s onto the end of this string
     String &operator+=(String& s);

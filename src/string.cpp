@@ -108,7 +108,7 @@ bool String::operator>=(String& s) const{
     }
     return false;
 }
-String String::operator+(Strin& s) const {
+String String::operator+(String s) const {
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
