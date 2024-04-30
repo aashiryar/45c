@@ -72,37 +72,37 @@ int String::indexOf(String s) const {
     }
     return -1;
 }
-bool String::operator==(String& s) const{
+bool String::operator==(String s) const{
     if (strcmp(buf, s.buf) == 0) {
         return true;
     }
     return false;
 }
-bool String::operator!=(String& s) const{
+bool String::operator!=(String s) const{
     if (strcmp(buf, s.buf) != 0) {
         return true;
     }
     return false;
 }
-bool String::operator>(String& s) const{
+bool String::operator>(String s) const{
     if (strcmp(buf, s.buf) > 0) {
         return true;
     }
     return false;
 }
-bool String::operator<(String& s) const{
+bool String::operator<(String s) const{
     if (strcmp(buf, s.buf) < 0) {
         return true;
     }
     return false;
 }
-bool String::operator<=(String& s) const {
+bool String::operator<=(String s) const {
     if (strcmp(buf, s.buf) <= 0) {
         return true;
     }
     return false;
 }
-bool String::operator>=(String& s) const{
+bool String::operator>=(String s) const{
     if (strcmp(buf, s.buf) >= 0) {
         return true;
     }
