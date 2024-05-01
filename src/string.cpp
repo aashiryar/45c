@@ -52,10 +52,8 @@ int String::size() const{
     return strlen(buf);
 }
 String String::reverse() const{
-    char* reversed_string = new char[size() + 1];
-    reverse_cpy(reversed_string, buf);
-    String result(reversed_string);
-    delete[] reversed_string;
+    String result(size()+1);
+    reverse_cpy(result.buf, buf);
     return result;
 }
 int String::indexOf(char c) const{
@@ -109,12 +107,10 @@ bool String::operator>=(const String &s) const{
     return false;
 }
 String String::operator+(const String &s) const {
-    char* newBuf = new char[size() +s.size() + 1];
-    strcpy(newBuf, buf);
-    strcat(newBuf, s.buf);
-    String result(newBuf);
-    delete[] newBuf;
-    return result;
+    String newstr(size() +s.size() + 1);
+    strcpy(newstr.buf, buf);
+    strcat(newstr.buf, s.buf);
+    return newstr;
 }
 
 String& String::operator+=(const String &s){
@@ -137,6 +133,8 @@ void String::read(std::istream &in) {
     delete[] buf;
     buf = tempBuf;
 }
+String::String(int length) : buf(new char[length+1]) {}
+
 String::~String(){
     delete[] buf;
 }
