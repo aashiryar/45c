@@ -109,9 +109,7 @@ bool String::operator>=(const String &s) const{
     return false;
 }
 String String::operator+(const String &s) const {
-    size_t len1 = size();
-    size_t len2 = s.size();
-    char* newBuf = new char[len1 + len2 + 1];
+    char* newBuf = new char[size() +s.size() + 1];
     strcpy(newBuf, buf);
     strcat(newBuf, s.buf);
     String result(newBuf);
@@ -120,9 +118,7 @@ String String::operator+(const String &s) const {
 }
 
 String& String::operator+=(const String &s){
-    size_t len1 = size();
-    size_t len2 = s.size();
-    char* newBuf = new char[len1 + len2 + 1];
+    char* newBuf = new char[size() +s.size() + 1];
     strcpy(newBuf, buf);
     strcat(newBuf, s.buf);
     delete[] buf;
