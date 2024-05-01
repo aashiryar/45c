@@ -19,7 +19,8 @@ void String::swap(String &s) {
 String& String::operator=(String &&s) {
     if (this != &s) {
         delete[] buf;
-        buf = s.buf;
+        swap(s);
+       // buf = s.buf;
         s.buf = nullptr;
     }
     return *this;
