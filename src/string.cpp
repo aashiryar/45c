@@ -12,7 +12,9 @@ String::String(String &&s) {
     s.buf = nullptr;
 }
 void String::swap(String &s) {
-    std::swap(buf, s.buf);
+    char* temp = buf;
+    buf = s.buf;
+    s.buf = temp;   
 }
 String& String::operator=(String &&s) {
     if (this != &s) {
