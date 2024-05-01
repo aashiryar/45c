@@ -65,50 +65,50 @@ int String::indexOf(char c) const{
     }
     return -1;
 }
-int String::indexOf(String s) const {
+int String::indexOf(const String &s) const {
     const char *pointer = strstr(buf, s.buf);
     if (pointer != nullptr) {
         return pointer - buf;
     }
     return -1;
 }
-bool String::operator==(String s) const{
+bool String::operator==(const String &s) const{
     if (strcmp(buf, s.buf) == 0) {
         return true;
     }
     return false;
 }
-bool String::operator!=(String s) const{
+bool String::operator!=(const String &s) const{
     if (strcmp(buf, s.buf) != 0) {
         return true;
     }
     return false;
 }
-bool String::operator>(String s) const{
+bool String::operator>(const String &s) const{
     if (strcmp(buf, s.buf) > 0) {
         return true;
     }
     return false;
 }
-bool String::operator<(String s) const{
+bool String::operator<(const String &s) const{
     if (strcmp(buf, s.buf) < 0) {
         return true;
     }
     return false;
 }
-bool String::operator<=(String s) const {
+bool String::operator<=(const String &s) const {
     if (strcmp(buf, s.buf) <= 0) {
         return true;
     }
     return false;
 }
-bool String::operator>=(String s) const{
+bool String::operator>=(const String &s) const{
     if (strcmp(buf, s.buf) >= 0) {
         return true;
     }
     return false;
 }
-String String::operator+(String s) const {
+String String::operator+(const String &s) const {
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
@@ -119,7 +119,7 @@ String String::operator+(String s) const {
     return result;
 }
 
-String& String::operator+=(String s){
+String& String::operator+=(const String &s){
     size_t len1 = size();
     size_t len2 = s.size();
     char* newBuf = new char[len1 + len2 + 1];
@@ -136,6 +136,7 @@ void String::read(std::istream &in) {
     std::string string;
     in >> string;
     char* tempBuf = new char[string.size() + 1];
+    //can i do this
     strcpy(tempBuf, string.c_str());
     delete[] buf;
     buf = tempBuf;

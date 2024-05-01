@@ -28,9 +28,6 @@ TEST(StringFunction, strdup) {
     char* copied1 = String::strdup(src1);
     EXPECT_STREQ(copied1, src1);
     delete[] copied1;
-    //char* src2 = nullptr;
-    //har* copied2 = String::strdup(src2);
-    //EXPECT_EQ(copied2, nullptr);
     const char* src3 = "";
     char* copied3 = String::strdup(src3);
     EXPECT_STREQ(copied3, src3);
@@ -39,10 +36,6 @@ TEST(StringFunction, strdup) {
     char* copied4 = String::strdup(src4);
     EXPECT_STREQ(copied4, src4);
     delete[] copied4;
-    //const char* src5 = "Embedded\0Null\0Characters";
-    //char* copied5 = String::strdup(src5);
-    //EXPECT_STREQ(copied5, "Embedded");
-    //delete[] copied5;
 }
 
 TEST(StringFunction, strncpy) {
