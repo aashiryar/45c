@@ -128,13 +128,13 @@ void String::print(std::ostream &out) const {
     out << buf;
 }    
 void String::read(std::istream &in) {
-    std::string string;
-    in >> string;
-    char* tempBuf = new char[string.size() + 1];
-    //can i do this
-    strcpy(tempBuf, string.c_str());
-    delete[] buf;
-    buf = tempBuf;
+    const int temp_size = 1024;
+    char tempBuf[temp_size];
+    in >> tempBuf;
+    if (tempBuf != nullptr) {
+        delete[] buf;
+    }
+    buf = strdup(tempBuf);
 }
 String::String(int length) : buf(new char[length+1]) {}
 
