@@ -85,6 +85,9 @@ int String::indexOf(char c) const {
 
     // returns index into this string for first occurrence of s
 int String::indexOf(const String &s) const {
+    if (s.head == nullptr) {
+        return 0;
+    }
     list::Node* node = list::find_list(head, s.head);
     if (node != nullptr) {
         return list::index(head, node);
