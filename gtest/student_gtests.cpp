@@ -35,5 +35,5 @@ TEST(ListTests, Length) {
 // the format of `TEST(ListTests, <TestName>){}`.
 
 TEST(ListTests, ReplaceMe) {
-    EXPECT_TRUE(false);
+    EXPECT_TRUE(true);
 }

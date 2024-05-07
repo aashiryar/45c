@@ -140,6 +140,9 @@ Node* append(Node* lhs, Node* rhs) {
 
 // returns index of node in list starting at head
 int index(Node* head, Node* node) {
+    if (head == nullptr || node == nullptr) {
+        return -1;
+    }
     int i = 0;
     while (head != nullptr) {
         if (head == node) {
@@ -165,7 +168,13 @@ Node* find_char(Node* head, char c) {
 // similar to strstr but for two linked lists
 Node* find_list(Node* haystack, Node* needle) {
     while (haystack != nullptr) {
-        if (compare(haystack,needle) == 0) {
+        Node* h =  haystack;
+        Node* n = needle;
+        while (n!=nullptr && h!=nullptr && h->data==n->data) {
+            h = h->next;
+            n = n->next;
+        }
+        if (n==nullptr) {
             return haystack;
         }
         haystack = haystack->next;
