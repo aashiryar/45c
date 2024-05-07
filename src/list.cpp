@@ -114,16 +114,14 @@ int length(Node * L) {
 
 // returns reversed copy of linked list
 Node* reverse(Node* head) {
-    Node* prev = nullptr;
+    Node* reversed_head = nullptr;
     Node* current = head;
-    Node* next = nullptr;
-    while (current !=  nullptr) {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
+    while (current != nullptr) {
+        Node* new_node = new Node{current->data, reversed_head};
+        reversed_head = new_node;
+        current = current->next;
     }
-    return prev;
+    return reversed_head;
 }
 
 // returns new list containing all nodes of lhs followed by all nodes of rhs
@@ -143,7 +141,7 @@ Node* append(Node* lhs, Node* rhs) {
 // returns index of node in list starting at head
 int index(Node* head, Node* node) {
     int i = 0;
-    while (head !=  nullptr) {
+    while (head != nullptr) {
         if (head == node) {
             return i;
         }
