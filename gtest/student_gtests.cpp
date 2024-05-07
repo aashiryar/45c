@@ -37,3 +37,28 @@ TEST(ListTests, Length) {
 TEST(ListTests, ReplaceMe) {
     EXPECT_TRUE(true);
 }
+TEST(ListTests, FromString) {
+    const char* s = "hello";
+    list::Node* head = list::from_string(s);
+    std::string result;
+    for (list::Node* current = head; current != nullptr; current = current->next) {
+        result += current->data;
+    }
+    EXPECT_EQ(result, s);
+    list::free(head);
+}
+
+TEST(ListTests, Free) {
+    list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
+    list::free(head);
+    EXPECT_EQ(head, nullptr);
+}
+
+TEST(ListTests, Print) {
+    list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
+    std::stringstream ss;
+    std::streambuf* old_cout = std::cout.rdbuf(ss.rdbuf());
+    list::print(std::cout, head);
+    EXPECT_EQ(ss.str(), "hello");
+    list::free(head);
+}
