@@ -49,7 +49,7 @@ public:
     bool operator==(const String &s) const;
 
     // C++20 way of defining all comparisons at once
-    std::strong_ordering operator<=>(const String &s) const;
+   std::strong_ordering operator<=>(const String &s) const;
 
     // concatenate this and s to form a return string
     String operator+(const String &s) const;
