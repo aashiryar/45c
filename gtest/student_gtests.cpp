@@ -65,6 +65,13 @@ TEST(ListTests, Nth) {
     Node* const foo_list_head = list::from_string("foo");
     Node* nth = list::nth(foo_list_head, 1);
     EXPECT_EQ(nth->data, 'o');
+    //EXPECT_EQ(nth->next, nullptr);
+    list::free(foo_list_head);
+}
+TEST(ListTests, Last) {
+    Node* const foo_list_head = list::from_string("foo");
+    Node* last = list::last(foo_list_head);
+    EXPECT_EQ(last->data, 'o');
     list::free(foo_list_head);
 }
 
