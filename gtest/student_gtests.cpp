@@ -68,3 +68,22 @@ TEST(ListTests, Nth) {
     list::free(foo_list_head);
 }
 
+TEST(ListTests, Reverse) {
+    Node* original  = list::from_string("abc");
+    Node* reversed = list::reverse(original);
+    EXPECT_EQ(reversed->data,'c');
+    EXPECT_EQ(reversed->next->data,'b');
+    EXPECT_EQ(reversed->next->next->data,'a');
+    EXPECT_EQ(reversed->next->next->next, nullptr);
+    list::free(original);
+    list::free(reversed);
+}
+TEST(ListTests, FindList) {
+    Node* hay  = list::from_string("abcd");
+    Node* needle = list::from_string("bc");
+    Node* found = list::find_list(hay,needle);
+    ASSERT_NE(found, nullptr);
+    EXPECT_EQ(found->data, 'b');
+    list::free(hay);
+    list::free(needle);
+}
