@@ -123,3 +123,10 @@ TEST(ListTests, Append) {
     list::free(lhs);
     list::free(rhs);
 }
+TEST(ListTests, IndexExistingNode) {
+    list::Node* head = list::from_string("123");
+    list::Node* nodeToFind = head->next->next;
+    int result = list::index(head, nodeToFind);
+    EXPECT_EQ(result, 2);
+    list::free(head);
+}
