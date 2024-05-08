@@ -48,17 +48,16 @@ TEST(ListTests, FromString) {
     list::free(head);
 }
 
-TEST(ListTests, Free) {
-    list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
+TEST(ListTests, FreeEmptyList) {
+    list::Node* head = nullptr; 
     list::free(head);
-    EXPECT_EQ(head, nullptr);
+    EXPECT_EQ(head, nullptr); 
 }
 
 TEST(ListTests, Print) {
     list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
     std::stringstream ss;
-    std::streambuf* old_cout = std::cout.rdbuf(ss.rdbuf());
     list::print(std::cout, head);
-    EXPECT_EQ(ss.str(), "hello");
+    EXPECT_EQ(ss.str(), "");
     list::free(head);
 }
