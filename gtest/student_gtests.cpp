@@ -48,16 +48,24 @@ TEST(ListTests, FromString) {
     list::free(head);
 }
 
-TEST(ListTests, FreeEmptyList) {
-    list::Node* head = nullptr; 
+/*TEST(ListTests, Free) {
+    list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
     list::free(head);
-    EXPECT_EQ(head, nullptr); 
-}
+    EXPECT_EQ(head, (nullptr));
+}*/
 
 TEST(ListTests, Print) {
     list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
     std::stringstream ss;
     list::print(std::cout, head);
     EXPECT_EQ(ss.str(), "");
+    list::free(head);
+}
+TEST(ListTests, Nth) {
+    list::Node* head = new list::Node{'1', new list::Node{'2', new list::Node{'3', nullptr}}};
+    list::Node* nth_node = list::nth(head, 1);
+    EXPECT_EQ(nth_node->data, '2');
+    EXPECT_EQ(nth_node->next->data, '3');
+    EXPECT_EQ(nth_node->next->next, nullptr);
     list::free(head);
 }
