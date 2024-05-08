@@ -40,19 +40,20 @@ TEST(ListTests, ReplaceMe) {
 TEST(ListTests, FromString) {
     const char* s = "hello";
     list::Node* head = list::from_string(s);
-    std::string result;
-    for (list::Node* current = head; current != nullptr; current = current->next) {
-        result += current->data;
-    }
-    EXPECT_EQ(result, s);
+    EXPECT_EQ(head->data, 'h');
+    EXPECT_EQ(head->next->data, 'e');
+    EXPECT_EQ(head->next->next->data, 'l');
+    EXPECT_EQ(head->next->next->next->data, 'l');
+    EXPECT_EQ(head->next->next->next->next->data, 'o');
+    EXPECT_EQ(head->next->next->next->next->next, nullptr);
     list::free(head);
 }
 
-/*TEST(ListTests, Free) {
+TEST(ListTests, Free) {
     list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
     list::free(head);
-    EXPECT_EQ(head, (nullptr));
-}*/
+    ASSERT_NE(head, (nullptr));
+}
 
 TEST(ListTests, Print) {
     list::Node* head = new list::Node{'h', new list::Node{'e', new list::Node{'l', new list::Node{'l', new list::Node{'o', nullptr}}}}};
@@ -65,13 +66,19 @@ TEST(ListTests, Nth) {
     Node* const foo_list_head = list::from_string("foo");
     Node* nth = list::nth(foo_list_head, 1);
     EXPECT_EQ(nth->data, 'o');
-    //EXPECT_EQ(nth->next, nullptr);
+    ASSERT_NE(nth->next, nullptr);
     list::free(foo_list_head);
+}
+TEST(ListTests, NthEmptyList) {
+    list::Node* head = nullptr; // Empty list
+    list::Node* nth_node = list::nth(head, 2);
+    EXPECT_EQ(nth_node, nullptr);
 }
 TEST(ListTests, Last) {
     Node* const foo_list_head = list::from_string("foo");
     Node* last = list::last(foo_list_head);
     EXPECT_EQ(last->data, 'o');
+    EXPECT_EQ(last->next, nullptr);
     list::free(foo_list_head);
 }
 
