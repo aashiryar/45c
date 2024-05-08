@@ -62,10 +62,9 @@ TEST(ListTests, Print) {
     list::free(head);
 }
 TEST(ListTests, Nth) {
-    list::Node* head = new list::Node{'1', new list::Node{'2', new list::Node{'3', nullptr}}};
-    list::Node* nth_node = list::nth(head, 1);
-    EXPECT_EQ(nth_node->data, '2');
-    EXPECT_EQ(nth_node->next->data, '3');
-    EXPECT_EQ(nth_node->next->next, nullptr);
-    list::free(head);
+    Node* const foo_list_head = list::from_string("foo");
+    Node* nth = list::nth(foo_list_head, 1);
+    EXPECT_EQ(nth->data, 'o');
+    list::free(foo_list_head);
 }
+
