@@ -100,3 +100,12 @@ TEST(ListTests, FindList) {
     list::free(hay);
     list::free(needle);
 }
+TEST(ListTests, FindChar) {
+    Node* hay  = list::from_string("abcd");
+    Node* found = list::find_char(hay,'c');
+    ASSERT_NE(found, nullptr);
+    EXPECT_EQ(found->data, 'b');
+    Node* not_found = list::find_char(hay,'d');
+    EXPECT_EQ(not_found, nullptr);
+    list::free(hay);
+}
