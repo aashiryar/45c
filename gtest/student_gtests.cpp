@@ -109,3 +109,17 @@ TEST(ListTests, FindChar) {
     //EXPECT_EQ(not_found, nullptr);
     list::free(hay);
 }
+TEST(ListTests, Append) {
+    list::Node* lhs = list::from_string("123");
+    list::Node* rhs = list::from_string("45");
+    list::Node* result = list::append(lhs, rhs);
+    EXPECT_EQ(result->data, '1');
+    EXPECT_EQ(result->next->data, '2');
+    EXPECT_EQ(result->next->next->data, '3');
+    EXPECT_EQ(result->next->next->next->data, '4');
+    EXPECT_EQ(result->next->next->next->next->data, '5');
+    EXPECT_EQ(result->next->next->next->next->next, nullptr);
+    list::free(result);
+    list::free(lhs);
+    list::free(rhs);
+}
