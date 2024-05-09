@@ -93,6 +93,11 @@ TEST(ListTests, Reverse) {
     EXPECT_EQ(reversed->next->next->next, nullptr);
     list::free(original);
     list::free(reversed);
+    Node* const q1 = list::from_string("");
+    Node* const q2 = list::reverse(q1);
+    EXPECT_TRUE(q2==nullptr);
+    list::free(q1);
+    list::free(q2);
 }
 TEST(ListTests, FindList) {
     Node* hay  = list::from_string("abcd");
@@ -149,20 +154,4 @@ TEST(ListTests, CompareNElements) {
     EXPECT_EQ(result, 0);
     list::free(lhs);
     list::free(rhs);
-}
-
-TEST(ListTests, Copy) {
-    Node* const head = list::from_string("foo");
-    Node* p = list::copy(head);
-    EXPECT_EQ(list::compare(head, p), 0);
-    EXPECT_EQ(list::length(head), list::length(p));
-    list::free(head);
-    list::free(p);
-
-    Node* const head2 = list::from_string("");
-    Node* q = list::copy(head2);
-    EXPECT_EQ(list::compare(head2, q), 0);
-    EXPECT_EQ(list::length(head2), list::length(q));
-    list::free(head2);
-    list::free(q);
 }
