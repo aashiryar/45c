@@ -151,3 +151,18 @@ TEST(ListTests, CompareNElements) {
     list::free(rhs);
 }
 
+TEST(ListTests, Copy) {
+    Node* const head = list::from_string("foo");
+    Node* p = list::copy(head);
+    EXPECT_EQ(list::compare(head, p), 0);
+    EXPECT_EQ(list::length(head), list::length(p));
+    list::free(head);
+    list::free(p);
+
+    Node* const head2 = list::from_string("");
+    Node* q = list::copy(head2);
+    EXPECT_EQ(list::compare(head2, q), 0);
+    EXPECT_EQ(list::length(head2), list::length(q));
+    list::free(head2);
+    list::free(q);
+}
