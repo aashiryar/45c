@@ -29,6 +29,9 @@ TEST(ListTests, Length) {
     Node* const head = list::from_string("foo");
     EXPECT_EQ(list::length(head), 3);
     list::free(head);
+    Node* const head2 = list::from_string("");
+    EXPECT_EQ(list::length(head2), 0);
+    list::free(head2);
 }
 
 // Add remaining tests below. All tests should follow
@@ -130,3 +133,21 @@ TEST(ListTests, IndexExistingNode) {
     EXPECT_EQ(result, 2);
     list::free(head);
 }
+
+TEST(ListTests, CompareLists) {
+    list::Node* lhs = list::from_string("123");
+    list::Node* rhs = list::from_string("123");
+    int result = list::compare(lhs, rhs);
+    EXPECT_EQ(result, 0);
+    list::free(lhs);
+    list::free(rhs);
+}
+TEST(ListTests, CompareNElements) {
+    list::Node* lhs = list::from_string("123");;
+    list::Node* rhs = list::from_string("123");;
+    int result = list::compare(lhs, rhs, 3);
+    EXPECT_EQ(result, 0);
+    list::free(lhs);
+    list::free(rhs);
+}
+
