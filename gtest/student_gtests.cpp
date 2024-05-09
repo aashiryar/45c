@@ -146,6 +146,24 @@ TEST(ListTests, CompareLists) {
     EXPECT_EQ(result, 0);
     list::free(lhs);
     list::free(rhs);
+    Node* const p1 = list::from_string("");
+    Node* const p2 = list::from_string("foo");
+    EXPECT_LT(list::compare(p1, p2), 0);
+    list::free(p1);
+    list::free(p2);
+    Node* const q1 = list::from_string("foo");
+    Node* const q2 = list::from_string("foobar");
+    EXPECT_LT(list::compare(q1, q2), 0);
+    EXPECT_GT(list::compare(q2, q1), 0);
+    list::free(q1);
+    list::free(q2);
+    Node* const r1 = list::from_string("panda");
+    Node* const r2 = list::from_string("pandagreat");
+    EXPECT_LT(list::compare(r1, r2), 0);
+    EXPECT_GT(list::compare(r2, r1), 0);
+    EXPECT_EQ(list::compare(r1, r2, 5), 0);
+    list::free(r1);
+    list::free(r2);
 }
 TEST(ListTests, CompareNElements) {
     list::Node* lhs = list::from_string("123");;
