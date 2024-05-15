@@ -33,6 +33,7 @@ Picture& Picture::operator=(const Picture& other) {
 }
 Picture& Picture::operator=(Picture&& other) {
     if (this!=&other) {
+        free(head);
         swap(other);
         other.head = nullptr;
         other.tail = nullptr;
@@ -55,7 +56,7 @@ void Picture::print_all(std::ostream& out) const {
     for(ListNode* n = head; n != nullptr; n=n->next) {
         n->shape->print(out);
         //out <<'\n';
-        //n->shape->draw(out);
+        n->shape->draw(out);
         //if (n->next != nullptr) {
            // out << '\n'; 
         //}
