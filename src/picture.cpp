@@ -55,7 +55,7 @@ void Picture::print_all(std::ostream& out) const {
     for(ListNode* n = head; n != nullptr; n=n->next) {
         n->shape->print(out);
         //out <<'\n';
-       //n->shape->draw(out);
+        //n->shape->draw(out);
         //if (n->next != nullptr) {
            // out << '\n'; 
         //}
