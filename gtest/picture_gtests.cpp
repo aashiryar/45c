@@ -151,5 +151,5 @@ TEST_F(PictureTests, MoveAssignment) {
     p2 = std::move(p2);
     p2 = std::move(p3);
 
-    // EXPECT_EQ(to_string(p2), p3_str);
+    EXPECT_EQ(to_string(p2), p3_str);
 }
