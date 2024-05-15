@@ -33,7 +33,14 @@ Picture& Picture::operator=(const Picture& other) {
 }
 Picture& Picture::operator=(Picture&& other) {
     if (this!=&other) {
-        free(head);
+        while(head != nullptr) {
+            ListNode*temp = head;
+            head = head->next;
+            delete temp->shape;
+            delete temp;
+        }
+        head = nullptr;
+        tail = nullptr;
         swap(other);
         other.head = nullptr;
         other.tail = nullptr;
