@@ -44,14 +44,14 @@ private:
 template <typename T>
 //check
 std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix) {
-    for (int i = 0; i<matrix.num_rows;i++) {
+    for (int i = 0; i<matrix.num_rows();i++) {
         out << matrix[i] << std::endl;
     }
     return out;
 }
 template <typename T>
 std::istream& operator>>(std::istream& in, const Matrix<T>& matrix) {
-    for (int i = 0; i<matrix.num_rows;i++) {
+    for (int i = 0; i<matrix.num_rows();i++) {
         in >> matrix[i] >> std::endl;
     }
     return in;
