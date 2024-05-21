@@ -29,7 +29,7 @@ public:
         std::swap(lhs.buf, rhs.buf);
     }
     Array& operator=(const Array& other) {
-        if (*this != &other) {
+        if (this != &other) {
             delete[] buf;
             len = other.len;
             buf = new T[other.len];
@@ -38,7 +38,7 @@ public:
         return *this;
     }
     Array& operator=(Array&& other) noexcept {
-        if (*this != &other) {
+        if (this != &other) {
             delete[] buf;
             len = other.len;
             buf = other.buf;
@@ -53,13 +53,13 @@ public:
     int length() const {
         return len;
     }
-    int& operator[](int index) {
+    T& operator[](int index) {
         if(!in_bounds(index)) {
             throw std::string("Exception operator[](" + std::to_string(index) + ") Out Of Range");
         }
         return buf[index];
     }
-    const int& operator[](int index) const {
+    const T& operator[](int index) const {
         if(!in_bounds(index)) {
             throw std::string("Exception operator[](" + std::to_string(index) + ") Out Of Range");
         }
