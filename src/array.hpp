@@ -30,10 +30,12 @@ public:
     }
     Array& operator=(const Array& other) {
         if (this != &other) {
-            delete[] buf;
-            len = other.len;
-            buf = new T[other.len];
-            swap(buf, other.buf);
+            //delete[] buf;
+            //len = other.len;
+            //buf = new T[other.len];
+            //swap(buf, other.buf);
+            Array temp(other);
+            swap(*this, temp);
         }
         return *this;
     }
