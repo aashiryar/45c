@@ -50,7 +50,7 @@ public:
     ~Array() {
         delete[] buf;
     }
-    int lenght() const {
+    int length() const {
         return len;
     }
     int& operator[](int index) {
