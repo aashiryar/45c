@@ -95,7 +95,7 @@ std::ostream& operator<<(std::ostream& out, const Array<T>& array) {
 }
 template <typename T>
 std::istream& operator>>(std::istream& in, Array<T>& array) {
-    for (int i = 0; i < array.length()); ++i) {
+    for (int i = 0; i < array.length(); ++i) {
         in >> array[i];
     }
     return in;
