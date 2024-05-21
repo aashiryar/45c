@@ -53,7 +53,7 @@ std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix) {
     return out;
 }
 template <typename T>
-std::istream& operator>>(std::istream& in, const Matrix<T>& matrix) {
+std::istream& operator>>(std::istream& in, Matrix<T>& matrix) {
     for (int i = 0; i < matrix.num_rows(); ++i) {
         for (int j = 0; j < matrix[i].length(); ++j) {
             in >> matrix[i][j];
