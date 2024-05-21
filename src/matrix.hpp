@@ -42,21 +42,24 @@ private:
 };
 
 template <typename T>
-//check
 std::ostream& operator<<(std::ostream& out, const Matrix<T>& matrix) {
+    std::stringstream temp;
+    temp << std::setprecision(2) << std::fixed << std::right;
     for (int i = 0; i < matrix.num_rows(); ++i) {
-        for (int j = 0; j < matrix[i].length(); ++j) {
-            out << matrix[i][j];
+        for (int j = 0; j < matrix.num_cols(); ++j) {
+            temp << std::setw(8) << matrix[i][j];
         }
-        out << std::endl;
+        temp << '\n';
     }
+    out << temp.str();
     return out;
 }
+
 template <typename T>
-std::istream& operator>>(std::istream& in, Matrix<T>& matrix) {
+std::istream& operator>>(std::istream& in, Matrix<T>& matrix){
     for (int i = 0; i < matrix.num_rows(); ++i) {
-        for (int j = 0; j < matrix[i].length(); ++j) {
-            in >> matrix[i][j];
+        for(int j=0;j< matrix.num_cols();++j){
+            in>>matrix[i][j];
         }
     }
     return in;
