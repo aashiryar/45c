@@ -69,14 +69,14 @@ private:
 inline std::ostream& operator<<(std::ostream& out, const Array& array) {
     std::stringstream temp;
     temp << std::setprecision(2) << std::fixed << std::right;
-    for (int i = 0; i < array.lenght(); ++i) {
+    for (int i = 0; i < array.length(); ++i) {
         temp << std::setw(8) << array[i];
     }
     out << temp.str();
     return out;
 }
 inline std::istream& operator>>(std::istream& in, Array& array) {
-    for (int i = 0; i < array.lenght(); ++i) {
+    for (int i = 0; i < array.length(); ++i) {
         in >> array[i];
     }
     return in;

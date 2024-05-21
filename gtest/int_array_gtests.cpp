@@ -9,8 +9,8 @@ using namespace std;
 
 TEST(IntArrayTests, Length) {
     Array arr{10};
-    EXPECT_EQ(arr.lenght(), 10);
-    EXPECT_EQ(Array{}.lenght(), 0);
+    EXPECT_EQ(arr.length(), 10);
+    EXPECT_EQ(Array{}.length(), 0);
 }
 
 TEST(IntArrayTests, Subscript) {
@@ -62,13 +62,13 @@ TEST(IntArrayTests, CopyConstructor) {
     Array arr{10};
     arr.fill(20);
     Array arr2{arr};
-    EXPECT_EQ(arr2.lenght(), 10);
+    EXPECT_EQ(arr2.length(), 10);
     EXPECT_EQ(arr2[0], 20);
     EXPECT_EQ(arr2[9], 20);
 
     Array empty;
     Array arr3{empty};
-    EXPECT_EQ(arr3.lenght(), 0);
+    EXPECT_EQ(arr3.length(), 0);
 }
 
 TEST(IntArrayTests, MoveConstructor) {
