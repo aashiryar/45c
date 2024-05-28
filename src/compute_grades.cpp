@@ -108,12 +108,15 @@ std::istream& operator>>(std::istream& in, Student& s) {
             iss >> s.first_name;
             std::getline(iss, s.last_name);
             s.last_name = s.last_name.substr(1); 
-        } else if (first == "Quiz") {
+		} else if (first == "Quiz") {
             s.quiz.clear();
             std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.quiz));
         } else if (first == "HW") {
             s.hw.clear();
-            std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.hw));
+            int hw_value;
+            while (iss >> hw_value) {
+                s.hw.push_back(hw_value);
+            }
         } else if (first == "Final") {
             iss >> s.final_score;
         }
