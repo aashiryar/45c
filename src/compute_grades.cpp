@@ -98,30 +98,27 @@ std::ostream& operator<<(std::ostream& out, const Student& s) {
     return out;
 }
 std::istream& operator>>(std::istream& in, Student& s) {
-    std::string line;
+	std::string line;
     while (std::getline(in, line) && !line.empty()) {
         std::istringstream iss(line);
-        std::string first;
-        iss >> first;
-        if (first == "Name") {
+        std::string key;
+        iss >> key;
+        if (key == "Name") {
             std::string name;
             iss >> s.first_name;
             std::getline(iss, s.last_name);
             s.last_name = s.last_name.substr(1); 
-		} else if (first == "Quiz") {
+		} else if (key == "Quiz") {
             s.quiz.clear();
             std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.quiz));
-        } else if (first == "HW") {
+        } else if (key == "HW") {
             s.hw.clear();
-            int hw_value;
-            while (iss >> hw_value) {
-                s.hw.push_back(hw_value);
-            }
-        } else if (first == "Final") {
+            std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.hw));
+        } else if (key == "Final") {
             iss >> s.final_score;
         }
     }
-    return in;
+       return in;
 }
 void Gradebook::compute_grades() {
 	std::for_each(students.begin(), students.end(), [](Student& s){s.compute_grade();});
