@@ -99,7 +99,17 @@ std::ostream& operator<<(std::ostream& out, const Student& s) {
 }
 std::istream& operator>>(std::istream& in, Student& s) {
     std::string line;
-    while (std::getline(in, line) && !line.empty()) {
+    while (std::getline(in, line)) {
+        if (line.empty()) {
+            // If the line is empty, set all values to 0 and return
+            s.first_name = "";
+            s.last_name = "";
+            s.quiz.clear();
+            s.hw.clear();
+            s.final_score = 0;
+            return in;
+        }
+
         std::istringstream iss(line);
         std::string key;
         iss >> key;
@@ -114,15 +124,13 @@ std::istream& operator>>(std::istream& in, Student& s) {
             while (iss >> score) {
                 s.quiz.push_back(score);
             }
-        } 
-		else if (key == "HW") {
+        } else if (key == "HW") {
             s.hw.clear();
             int score;
             while (iss >> score) {
                 s.hw.push_back(score);
-       	 	}
-        } 
-		else if (key == "Final") {
+            }
+        } else if (key == "Final") {
             iss >> s.final_score;
         }
     }
