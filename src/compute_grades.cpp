@@ -130,15 +130,12 @@ void Gradebook::validate() const {
 	std::for_each(students.begin(), students.end(), [](const Student& s){s.validate();});
 }
 std::istream& operator>>(std::istream& in, Gradebook& b) {
-    Student s;
-    while (in >> s) {
-        b.students.push_back(s);
-    }
+    b.students.assign(std::istream_iterator<Student>(in), std::istream_iterator<Student>());
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Gradebook& b) {
-    for (const auto& s : b.students) {
-        out << s << '\n';
-    }
+    std::ranges::for_each(b.students, [&out](const Student& s) {
+        out << s << "\n";
+    });
     return out;
 }
