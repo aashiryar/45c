@@ -98,7 +98,7 @@ std::ostream& operator<<(std::ostream& out, const Student& s) {
     return out;
 }
 std::istream& operator>>(std::istream& in, Student& s) {
-	std::string line;
+    std::string line;
     while (std::getline(in, line) && !line.empty()) {
         std::istringstream iss(line);
         std::string key;
@@ -108,17 +108,25 @@ std::istream& operator>>(std::istream& in, Student& s) {
             iss >> s.first_name;
             std::getline(iss, s.last_name);
             s.last_name = s.last_name.substr(1); 
-		} else if (key == "Quiz") {
+        } else if (key == "Quiz") {
             s.quiz.clear();
-            std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.quiz));
-        } else if (key == "HW") {
+            int score;
+            while (iss >> score) {
+                s.quiz.push_back(score);
+            }
+        } 
+		else if (key == "HW") {
             s.hw.clear();
-            std::copy(std::istream_iterator<int>(iss), std::istream_iterator<int>(), std::back_inserter(s.hw));
-        } else if (key == "Final") {
+            int score;
+            while (iss >> score) {
+                s.hw.push_back(score);
+       	 	}
+        } 
+		else if (key == "Final") {
             iss >> s.final_score;
         }
     }
-       return in;
+    return in;
 }
 void Gradebook::compute_grades() {
 	std::for_each(students.begin(), students.end(), [](Student& s){s.compute_grade();});
@@ -130,12 +138,15 @@ void Gradebook::validate() const {
 	std::for_each(students.begin(), students.end(), [](const Student& s){s.validate();});
 }
 std::istream& operator>>(std::istream& in, Gradebook& b) {
-    b.students.assign(std::istream_iterator<Student>(in), std::istream_iterator<Student>());
+    Student s;
+    while (in >> s) {
+        b.students.push_back(s);
+    }
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Gradebook& b) {
-    std::ranges::for_each(b.students, [&out](const Student& s) {
-        out << s << "\n";
-    });
+    for (const auto& s : b.students) {
+        out << s << '\n';
+    }
     return out;
 }
