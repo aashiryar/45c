@@ -98,31 +98,24 @@ std::ostream& operator<<(std::ostream& out, const Student& s) {
     return out;
 }
 std::istream& operator>>(std::istream& in, Student& s) {
+    s.quiz.clear();
+    s.hw.clear();
+    s.final_score = 0;
+
     std::string line;
-    if (std::getline(in, line)) {
+    while (std::getline(in, line) && !line.empty()) {
         std::istringstream iss(line);
-        std::string key;
-        iss >> key;
-        if (key == "Name") {
-            std::string name;
+        std::string keyword;
+        iss >> keyword;
+        if (keyword == "Name") {
             iss >> s.first_name;
             std::getline(iss, s.last_name);
-            s.last_name = s.last_name.substr(1); 
-        } else if (key == "Quiz") {
-            s.quiz.clear();
-            int score;
-            while (iss >> score) {
-                s.quiz.push_back(score);
-            }
-        } 
-		else if (key == "HW") {
-            s.hw.clear();
-            int score;
-            while (iss >> score) {
-                s.hw.push_back(score);
-       	 	}
-        } 
-		else if (key == "Final") {
+            s.last_name.erase(s.last_name.begin(), std::find_if(s.last_name.begin(), s.last_name.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+        } else if (keyword == "Quiz") {
+            s.quiz.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
+        } else if (keyword == "HW") {
+            s.hw.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
+        } else if (keyword == "Final") {
             iss >> s.final_score;
         }
     }
