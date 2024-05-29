@@ -101,23 +101,22 @@ std::istream& operator>>(std::istream& in, Student& s) {
     s.quiz.clear();
     s.hw.clear();
     s.final_score = 0;
-
     std::string line;
     while (std::getline(in, line) && !line.empty()) {
         std::istringstream iss(line);
-        std::string keyword;
-        iss >> keyword;
-        if (keyword == "Name") {
+        std::string key;
+        iss >> key;
+        if (key == "Name") {
             iss >> s.first_name;
             std::getline(iss, s.last_name);
             s.last_name.erase(s.last_name.begin(), std::find_if(s.last_name.begin(), s.last_name.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-        } else if (keyword == "Quiz") {
-            s.quiz.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
-        } else if (keyword == "HW") {
-            s.hw.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
-        } else if (keyword == "Final") {
+        } else if (key == "Final") {
             iss >> s.final_score;
-        }
+        } else if (key == "Quiz") {
+            s.quiz.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
+        } else if (key == "HW") {
+            s.hw.assign(std::istream_iterator<int>(iss), std::istream_iterator<int>());
+        } 
     }
     return in;
 }
