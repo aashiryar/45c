@@ -18,7 +18,7 @@ public:
         using difference_type = std::ptrdiff_t;
         using pointer = std::pair<Key, Value>*;
         using reference = std::pair<Key, Value>&;
-        explicit ArrayIterator(std::pair<Key, Value>* ptr = nullptr) = ptr(ptr) {};
+        explicit ArrayIterator(std::pair<Key, Value>* ptr = nullptr) : ptr(ptr) {};
         ArrayIterator& operator++(){
             ++ptr;
             return *this;
