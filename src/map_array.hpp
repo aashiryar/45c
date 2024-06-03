@@ -46,8 +46,7 @@ public:
             return *this;
         }
         friend ArrayIterator operator+(ArrayIterator it, difference_type d) {
-            it = it+d;
-            return it;
+            return ArrayIterator(it.ptr + d);
         }
         friend ArrayIterator operator+(difference_type d, ArrayIterator it) {
             return ArrayIterator(d+it.ptr);
