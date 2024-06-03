@@ -42,7 +42,7 @@ public:
         bool operator==(const ListIterator& other) const = default;
     private:
         std::shared_ptr<ListNode> ptr;
-    }
+    };
     using value_type = T;
     using iterator = ListIterator;
     
