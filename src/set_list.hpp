@@ -74,6 +74,7 @@ public:
             if (*iter == value) {
                 return iter;
             }
+        }
         auto node = std::make_shared<ListNode>(std::move(value));
         node->next = head;
         head = node;

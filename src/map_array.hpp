@@ -79,7 +79,18 @@ public:
     ArrayIterator end() {
         return ArrayIterator(data.data() + data.size());
     }
-    Value& operator[](const Key& key);
+    Value& operator[](const Key& key) {
+        auto it = std::lower_bound(data.begin(), data.end(), key, [](const value_type& lhs, const Key& rhs) {
+            return lhs.first < rhs;
+        });
+
+        if (it != data.end() && it->first == key) {
+            return it->second;
+        } else {
+            it = data.insert(it, {key, Value{}});
+            return it->second;
+        }
+    }
 private:
     std::vector<std::pair<Key, Value>> data;
 };
