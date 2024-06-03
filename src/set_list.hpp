@@ -1,6 +1,6 @@
 #ifndef SET_LIST_HPP
 #define SET_LIST_HPP
-#include <algortithm>
+#include <algorithm>
 #include <functional>
 #include <iterator>
 #include <memory>
