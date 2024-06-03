@@ -1,11 +1,12 @@
 #ifndef MAP_ARRAY_HPP
 #define MAP_ARRAY_HPP
-
+#include<cassert>
 #include <algorithm>
 #include <iterator>
 #include <ranges>
 #include <utility>
 #include <vector>
+
 
 template <typename Key, typename Value>
 class MapArray {
@@ -17,7 +18,7 @@ public:
         using difference_type = std::ptrdiff_t;
         using pointer = std::pair<Key, Value>*;
         using reference = std::pair<Key, Value>&;
-        explicit ArrayIterator(std::pair<Key, Value>* ptr = nullptr);
+        explicit ArrayIterator(std::pair<Key, Value>* ptr = nullptr) = ptr(ptr) {};
         ArrayIterator& operator++(){
             ++ptr;
             return *this;
@@ -26,12 +27,12 @@ public:
             --ptr;
             return *this;
         }
-        ArrayIterator& operator++(int) {
+        ArrayIterator operator++(int) {
             ArrayIterator temp= *this;
             ++(*this);
             return temp;
         }
-        ArrayIterator& operator--(int) {
+        ArrayIterator operator--(int) {
             ArrayIterator temp= *this;
             --(*this);
             return temp;
@@ -66,18 +67,24 @@ public:
             return ptr;
         }
         std::pair<Key, Value>& operator[](difference_type d) const {
-            return (ptr+d);
+            return *(ptr+d);
         }
     private:
         std::pair<Key, Value>* ptr;
     };
     using value_type = std::pair<Key, Value>;
-    using iterator = ArrayIterator;
+    using citerator = const ArrayIterator;
     ArrayIterator begin() {
         return ArrayIterator(data.data());
     }
-    ArrayIterator end() {
+    ArrayIterator end(){
         return ArrayIterator(data.data() + data.size());
+    }
+    ArrayIterator begin() const{
+        return citerator(data.data());
+    }
+    ArrayIterator end() const {
+        return citerator(data.data() + data.size());
     }
     Value& operator[](const Key& key) {
         auto it = std::lower_bound(data.begin(), data.end(), key, [](const value_type& lhs, const Key& rhs) {
